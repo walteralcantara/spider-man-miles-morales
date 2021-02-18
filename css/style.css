@@ -210,6 +210,15 @@ header {
   width: 100%;
   padding-top: 16px;
 }
+@media screen and (max-width: 960px) {
+  header {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    z-index: 999;
+  }
+}
 
 .navbar {
   max-width: 1440px;
@@ -217,6 +226,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media screen and (max-width: 960px) {
+  .navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
 .nav-menu {
@@ -234,12 +249,35 @@ header {
 }
 @media screen and (max-width: 960px) {
   .nav-list {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    margin: 0;
+    background: #222;
+    width: 100%;
+    max-width: 200px;
+    padding: 100px 20px;
+    flex-direction: column;
+    transition: 0.5s ease;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .nav-list.active {
+    text-align: center;
+    right: 0;
   }
 }
 
 .logo {
   max-width: 88px;
+}
+@media screen and (max-width: 960px) {
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .nav-link {
@@ -264,24 +302,62 @@ header {
   transition: 0.7s ease;
   background: linear-gradient(180deg, rgba(233, 39, 34, 0) 0%, #e91022 100%);
 }
+@media screen and (max-width: 960px) {
+  .nav-link::after {
+    top: 15px;
+    left: -25%;
+    width: 0px;
+    height: 2px !important;
+    background: linear-gradient(90deg, rgba(233, 39, 34, 0) 0%, #e91022 100%);
+  }
+}
 .nav-link:hover {
   color: #f4f7fb;
 }
 .nav-link:hover::after {
   height: 40px;
 }
+@media screen and (max-width: 960px) {
+  .nav-link:hover::after {
+    width: 25px;
+  }
+}
 
 .bx {
-  width: 48px;
-  height: 48px;
-  background-color: #edf1f7;
-  border-radius: 3px;
   display: none;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 0;
+  position: relative;
+  cursor: pointer;
 }
 @media screen and (max-width: 960px) {
   .bx {
     display: block;
+    z-index: 999;
   }
+}
+.bx::after {
+  content: "";
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  width: 70%;
+  height: 5%;
+  border-radius: 5px;
+  background-color: #f4f7fb;
+}
+.bx::before {
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 15%;
+  width: 70%;
+  height: 5%;
+  border-radius: 5px;
+  background-color: #f4f7fb;
 }
 
 .nav-social {

@@ -1,121 +1,203 @@
 header {
-    width: 100%;
-    padding-top: 16px;
+  width: 100%;
+  padding-top: 16px;
+
+  @include responsive() {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.6); //#0a0c10;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+  }
 }
 
 .navbar {
-    max-width: 1440px;
-    margin: 0 auto;
+  max-width: 1440px;
+  margin: 0 auto;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include responsive() {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
 .nav-menu {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .nav-list {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 
-    li {
-        margin-left: 24px;
-    }
+  li {
+    margin-left: 24px;
+  }
 
-    @include responsive() {
-        display: none;
-    }
+  @include responsive() {
+    position: fixed;
+    top: 0;
+    right: -100%;
+
+    height: 100vh;
+    margin: 0;
+    background: #222;
+
+    width: 100%;
+    max-width: 200px;
+
+    padding: 100px 20px;
+    flex-direction: column;
+
+    transition: 0.5s ease;
+  }
+}
+
+.nav-list.active {
+  @include responsive() {
+    text-align: center;
+    right: 0;
+  }
 }
 
 .logo {
-    max-width: 88px;
+  max-width: 88px;
+
+  @include responsive() {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .nav-link {
-    display: inline-block;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 200;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 200;
 
-    color: $gray-3;
+  color: $gray-3;
 
-    padding: 8px 16px;
+  padding: 8px 16px;
+  transition: 0.7s ease;
+
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+
+    width: 2px;
+    height: 0px;
+
     transition: 0.7s ease;
 
-    position: relative;
+    background: linear-gradient(180deg, rgba(233, 39, 34, 0) 0%, #e91022 100%);
+
+    @include responsive() {
+      top: 15px;
+      left: -25%;
+
+      width: 0px;
+      height: 2px !important;
+
+      background: linear-gradient(90deg, rgba(233, 39, 34, 0) 0%, #e91022 100%);
+    }
+  }
+
+  &:hover {
+    color: $white-light;
 
     &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: -40px;
-        left: 50%;
+      height: 40px;
 
-        width: 2px;
-        height: 0px;
-        transition: 0.7s ease;
-
-        background: linear-gradient(
-            180deg,
-            rgba(233, 39, 34, 0) 0%,
-            #e91022 100%
-        );
+      @include responsive() {
+        width: 25px;
+      }
     }
-
-    &:hover {
-        color: $white-light;
-
-        &::after {
-            height: 40px;
-        }
-    }
+  }
 }
 
 .bx {
-    width: 48px;
-    height: 48px;
+  display: none;
+  width: 35px;
+  height: 35px;
 
-    background-color: $white;
-    border-radius: 3px;
-    display: none;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 0;
 
-    @include responsive() {
-        display: block;
-    }
+  position: relative;
+  cursor: pointer;
+
+  @include responsive() {
+    display: block;
+    z-index: 999;
+  }
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 35%;
+    left: 15%;
+
+    width: 70%;
+    height: 5%;
+    border-radius: 5px;
+
+    background-color: $white-light;
+  }
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 55%;
+    left: 15%;
+
+    width: 70%;
+    height: 5%;
+    border-radius: 5px;
+
+    background-color: $white-light;
+  }
 }
 
 .nav-social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
 
-    svg {
-        cursor: pointer;
+  svg {
+    cursor: pointer;
 
-        margin-left: 16px;
-        width: 24px;
+    margin-left: 16px;
+    width: 24px;
 
-        path,
-        circle {
-            transition: 0.7s ease;
-        }
-
-        &:hover {
-            path,
-            circle {
-                fill: $red-light;
-                transform: translate3d(0, -3px, 0);
-            }
-        }
+    path,
+    circle {
+      transition: 0.7s ease;
     }
 
-    @include responsive() {
-        display: none;
+    &:hover {
+      path,
+      circle {
+        fill: $red-light;
+        transform: translate3d(0, -3px, 0);
+      }
     }
+  }
+
+  @include responsive() {
+    display: none;
+  }
 }
